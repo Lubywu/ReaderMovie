@@ -1,0 +1,25 @@
+<import src="movie-list/movie-list-template.wxml"/>
+<import src="movie-grid/movie-grid-template.wxml"/>
+
+<view class="search">
+    <icon type="search" class="search-img" size="13" color="#405f80"/>
+    <input type="text" placeholder="美女与野兽、速度与激情8" placeholder-class="placeholder" bindfocus="onBindFocusTap" bindchange="{{onChangeTap}}" bindconfirm="onConfirmTap" value="{{isSearchPanelShow?'':''}}" />
+    <text wx:if="{{isSearchPanelShow}}" bindtap="cancelSearch" class="cancel-search">取消</text>
+</view>
+
+<view class="container" wx:if="{{isContainerShow}}">
+    <view class="movies-template">
+        <template is="movieListTemplate" data="{{...inTheaters}}"></template>
+    </view>
+    <view class="movies-template">
+        <template is="movieListTemplate" data="{{...comingSoon}}"></template>
+    </view>
+    <view class="movies-template">
+         <template is="movieListTemplate" data="{{...top250}}"></template>
+    </view>
+</view>
+
+<!--搜索页面的结果页面-->
+<view class="search-panel" wx:if="{{isSearchPanelShow}}">
+    <template is="movieGridTemplate" data="{{...searchResult}}"></template>
+</view>

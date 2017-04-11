@@ -1,0 +1,25 @@
+<import src="post-item-template/post-item-template.wxml" />
+<view>
+  <swiper catchtap="onSwiperTab" indicator-dots="true" autoplay="true" interval="3000">
+    <swiper-item>
+      <image data-post-id="0" src="/images/post/crab.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <image data-post-id="1" src="/images/post/bl.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <image data-post-id="2" src="/images/post/xiaolong.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image data-post-id="3" src="/images/post/vr.png"></image>
+    </swiper-item>
+    
+  </swiper>
+  <block wx:for="{{post_data}}" wx:key="index">
+
+    <!--绑定事件不能直接在 template 上绑定，可以嵌套一层view来绑定-->
+    <view catchtap="detailTap" data-postid="{{item.postId}}">
+      <template is="post-item" data="{{...item}}"></template>
+    </view>
+  </block>
+</view>
